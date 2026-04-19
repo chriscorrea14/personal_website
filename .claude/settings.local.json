@@ -1,0 +1,23 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:scholar.google.com)",
+      "WebFetch(domain:goldberg.berkeley.edu)",
+      "WebFetch(domain:patentimages.storage.googleapis.com)",
+      "Bash(pdftotext \"/Users/chris/.claude/projects/-Users-chris-personal-website/50e121fc-5226-4e6e-bee7-03b5cea1b060/tool-results/webfetch-1776451456123-8h3zwk.pdf\" -)",
+      "Bash(pdftotext \"/Users/chris/.claude/projects/-Users-chris-personal-website/50e121fc-5226-4e6e-bee7-03b5cea1b060/tool-results/webfetch-1776451457153-wtopn6.pdf\" -)",
+      "Bash(pdftotext \"/Users/chris/.claude/projects/-Users-chris-personal-website/50e121fc-5226-4e6e-bee7-03b5cea1b060/tool-results/webfetch-1776451458071-lxppkg.pdf\" -)",
+      "WebFetch(domain:ieeexplore.ieee.org)",
+      "Bash(convert /Users/chris/personal_website/images/physical_both.eps /Users/chris/personal_website/images/physical_both.png)",
+      "Bash(gs -dNOPAUSE -dBATCH -sDEVICE=png16m -r150 -sOutputFile=/Users/chris/personal_website/images/physical_both.png /Users/chris/personal_website/images/physical_both.eps)",
+      "Bash(sips -s format png /Users/chris/personal_website/images/physical_both.eps --out /Users/chris/personal_website/images/physical_both.png)",
+      "Bash(python3 -c ' *)",
+      "Bash(pip3 install *)",
+      "Bash(python3 -m venv /tmp/imgenv)",
+      "Bash(/tmp/imgenv/bin/pip install *)",
+      "Bash(/tmp/imgenv/bin/python3 -c ' *)",
+      "Bash(brew install *)",
+      "Bash(gs -dNOPAUSE -dBATCH -dEPSCrop -sDEVICE=png16m -r150 -sOutputFile=/Users/chris/personal_website/images/physical_both.png /Users/chris/personal_website/images/physical_both.eps)"
+    ]
+  }
+}

@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Christopher Correa</title>
+  <meta name="description" content="Quantitative engineer and robotics researcher based in the San Francisco Bay Area." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- ============================================================
+     Nav
+     ============================================================ -->
+<nav>
+  <div class="nav-inner">
+    <span class="nav-name">Christopher Correa</span>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#publications">Publications</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- ============================================================
+     Hero
+     ============================================================ -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <h1>Christopher Correa</h1>
+        <p class="hero-subtitle">Quant Engineer &amp; Robotics Researcher</p>
+        <p class="hero-bio">
+          I build systems where rigorous theory meets messy reality — from robot
+          manipulation pipelines in live warehouses to trading infrastructure handling
+          real market microstructure. Based in the San Francisco Bay Area.
+        </p>
+        <div class="hero-actions">
+          <a href="mailto:christopher.correa14@gmail.com" class="btn btn-primary">Get in touch</a>
+          <a href="https://scholar.google.com/citations?user=kUbCuLgAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-outline">Google Scholar</a>
+          <a href="https://github.com/chriscorrea14" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+        </div>
+      </div>
+      <img src="images/headshot.jpg" alt="Christopher Correa" class="hero-photo" />
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     About
+     ============================================================ -->
+<section id="about">
+  <div class="container">
+    <p class="section-title">About</p>
+    <p>
+      I'm a quantitative engineer with a background in robotics research, currently
+      building trading systems and ML pipelines at Framework Ventures. My career has
+      moved through layers of the stack — from publishing grasp-planning research in
+      the <a href="https://autolab.berkeley.edu/" target="_blank" rel="noopener">AUTOLab</a>
+      at UC Berkeley, to leading an engineering team shipping robot pick-and-place
+      systems at Osaro, to now designing the data infrastructure and signal research
+      that underpins live crypto trading strategies.
+    </p>
+    <p>
+      I hold a B.S. and M.S. in Electrical Engineering &amp; Computer Science from
+      UC Berkeley, where I was a Regents &amp; Chancellor Scholar and a Graduate
+      Student Instructor for robotic manipulation. I care deeply about building
+      reliable systems — ones that work predictably at the edge of what's tractable.
+    </p>
+  </div>
+</section>
+
+<!-- ============================================================
+     Experience
+     ============================================================ -->
+<section id="experience">
+  <div class="container">
+    <p class="section-title">Experience</p>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Quant Engineer</span>
+        <span class="job-dates">June 2022 – Present</span>
+      </div>
+      <div class="job-company">Framework Ventures / Conduit</div>
+      <ul>
+        <li><strong>Signals Research:</strong> Designed end-to-end model-fitting pipelines for market movement prediction. Systematically evaluated sampling schemes, objective labels, model selection, and meta-strategy parameters on backtest performance. Built interactive visualizations to diagnose poor trades and iterate on strategy logic.</li>
+        <li><strong>Data Pipeline:</strong> Architected and owned a dual-purpose market-data system serving both live trading strategies and model training. Built a nightly AWS ETL pipeline to ingest and normalize multi-exchange data into efficient formats, with full historical backfill capability.</li>
+        <li><strong>Infrastructure &amp; Deployment:</strong> Owned deployment, orchestration, and observability across multiple machines and AWS availability zones. Built real-time P&amp;L dashboards and automated reporting. Managed trading and research machines, ETL infrastructure, and cron-scheduled data-validity checks using Docker and Terraform.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Auto-Bagging Team Lead</span>
+        <span class="job-dates">Feb 2022 – June 2022</span>
+      </div>
+      <div class="job-company">Osaro Inc.</div>
+      <ul>
+        <li>Drove the technical roadmap for a 7-engineer team in partnership with the Product Manager. Delivered projects spanning item bounding-box detection, barcode scanning, oriented placement into a bagging machine, and operator/robot UIs.</li>
+      </ul>
+      <a href="https://www.youtube.com/watch?v=MAH7qjJfCJA&t=17s" target="_blank" rel="noopener" class="video-link">
+        <img src="https://img.youtube.com/vi/MAH7qjJfCJA/maxresdefault.jpg" alt="Osaro robot pick-and-place demo" />
+        <div class="video-play">
+          <svg viewBox="0 0 68 48" xmlns="http://www.w3.org/2000/svg">
+            <path d="M66.5 7.7a8.5 8.5 0 0 0-6-6C56.1 0 34 0 34 0S11.9 0 7.5 1.7a8.5 8.5 0 0 0-6 6C0 12.1 0 24 0 24s0 11.9 1.5 16.3a8.5 8.5 0 0 0 6 6C11.9 48 34 48 34 48s22.1 0 26.5-1.7a8.5 8.5 0 0 0 6-6C68 35.9 68 24 68 24s0-11.9-1.5-16.3z" fill="red"/>
+            <path d="M27 34l18-10-18-10v20z" fill="white"/>
+          </svg>
+        </div>
+      </a>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Robotics Software Engineer</span>
+        <span class="job-dates">May 2019 – June 2022</span>
+      </div>
+      <div class="job-company">Osaro Inc.</div>
+      <ul>
+        <li><strong>Robot Policy Architecture:</strong> Re-architected the robot motion and policy system to support arbitrary chaining and shared state across policies. Designed advanced suction-cup grasp policies that adapt to hardware configuration, increasing overall system cycle time by <strong>240%</strong>. Work resulted in <a href="https://patents.google.com/patent/US20210081791" target="_blank" rel="noopener">US Patent US20210081791</a>.</li>
+        <li><strong>Core Logic:</strong> Designed the main bin-to-bin pick-and-place control loop, coordinating vision model queries, subtask scheduling, and hardware timing.</li>
+        <li><strong>Data Integrity &amp; Analytics:</strong> Built real-time pipelines to detect faulty sensors and stale camera calibrations. Created per-pick analytics infrastructure and SKU-level performance dashboards to drive data-informed policy decisions.</li>
+        <li><strong>Hardware-in-the-Loop Testing:</strong> Developed a full hardware simulation environment enabling policy development and regression testing without physical robots, accelerating the deployment cycle and reducing customer-site risk.</li>
+        <li><strong>Engineering Tooling:</strong> Independently conceived and delivered ~12 internal tools including 3D bin reachability visualizers, camera calibration utilities, and API simulators that improved team velocity and robot performance.</li>
+      </ul>
+    </div>
+
+    <div class="job">
+      <div class="job-header">
+        <span class="job-title">Graduate Student Instructor</span>
+        <span class="job-dates">2017 – 2019</span>
+      </div>
+      <div class="job-company">University of California, Berkeley</div>
+      <ul>
+        <li>GSI for EE/ME 206B: Robotic Manipulation and Interaction (analytical grasping, trajectory control, soft robotic grippers).</li>
+        <li>Head GSI for EE/ME 106B: Robotic Manipulation (undergraduate course).</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     Publications
+     ============================================================ -->
+<section id="publications">
+  <div class="container">
+    <p class="section-title">Publications &amp; Patents</p>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://goldberg.berkeley.edu/pubs/CASE2018-mike-linear-push-policies-final.pdf" target="_blank" rel="noopener">
+          Linear Push Policies to Increase Grasp Access for Robot Bin Picking
+        </a>
+      </div>
+      <div class="pub-meta">
+        M. Danielczuk, J. Mahler, <strong>C. Correa</strong>, K. Goldberg
+        &nbsp;·&nbsp;
+        <span class="venue">IEEE CASE 2018</span>, Munich, Germany
+      </div>
+      <p class="pub-blurb">
+        When a robot tries to grasp items from a cluttered bin, many objects aren't reachable in their current position — blocked, lying flat, or buried. This paper developed and benchmarked linear push motions that rearrange bin contents to expose better grasping surfaces, using the DexNet grasp-quality network to score candidate pushes. Validated in simulation and on a physical robot.
+      </p>
+      <div class="pub-images">
+        <a href="#lb-physical" class="pub-img-link">
+          <img src="images/physical_both.png" alt="Simulation and physical bin-picking results" class="pub-img" />
+        </a>
+      </div>
+      <div class="pub-badges">
+        <span class="badge badge-navy">78 citations</span>
+        <span class="badge badge-gray">Conference</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://goldberg.berkeley.edu/pubs/2019-CASE-correa-Robust-Toppling.pdf" target="_blank" rel="noopener">
+          Robust Toppling for Vacuum Suction Grasping
+        </a>
+      </div>
+      <div class="pub-meta">
+        <strong>C. Correa</strong>, J. Mahler, M. Danielczuk, K. Goldberg
+        &nbsp;·&nbsp;
+        <span class="venue">IEEE CASE 2019</span>, Vancouver, BC, Canada
+      </div>
+      <p class="pub-blurb">
+        Suction-cup robots often encounter objects with no accessible top surface — a lying-flat bottle, a face-down part. Rather than skipping them, a robot can deliberately topple the object onto a better side. This paper derives a physics model predicting how a rigid object lands after being pushed, so the robot can plan a single contact that reliably exposes a graspable surface. The model was integrated with DexNet to jointly optimize the push and subsequent grasp.
+      </p>
+      <div class="pub-images">
+        <a href="#lb-yoda" class="pub-img-link">
+          <img src="images/yoda.png" alt="Toppling simulation on a Yoda figurine" class="pub-img" />
+        </a>
+        <a href="#lb-toppling" class="pub-img-link">
+          <img src="images/toppling_reliability.png" alt="Grasp quality before and after toppling" class="pub-img" />
+        </a>
+      </div>
+      <div class="pub-badges">
+        <span class="badge badge-navy">18 citations</span>
+        <span class="badge badge-gray">Conference</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://drive.google.com/file/d/1JxGa2g7npqVHaIT_jwBnuLf19XIMMD07/view" target="_blank" rel="noopener">
+          A Cloud Robot System Using the Dexterity Network and Berkeley Robotics and Automation as a Service (BRASS)
+        </a>
+      </div>
+      <div class="pub-meta">
+        N. Tian, M. Matl, J. Mahler, Y. Zhou, S. Staszak, <strong>C. Correa</strong>, et al.
+        &nbsp;·&nbsp;
+        <span class="venue">IEEE ICRA 2017</span>
+      </div>
+      <p class="pub-blurb">
+        Demonstrated a cloud-based robotics system where lightweight robot clients offload expensive grasp planning to a remote server running the Dexterity Network (DexNet). By moving perception and planning to the cloud, robots can access large-scale GPU compute without carrying it onboard — enabling more capable and economical deployed systems at scale.
+      </p>
+      <div class="pub-badges">
+        <span class="badge badge-navy">50 citations</span>
+        <span class="badge badge-gray">Conference</span>
+      </div>
+    </div>
+
+    <div class="pub">
+      <div class="pub-title">
+        <a href="https://patents.google.com/patent/US20210081791" target="_blank" rel="noopener">
+          Computer-Automated Robot Grasp Depth Estimation
+        </a>
+      </div>
+      <div class="pub-meta">
+        B. Goodrich, A. Kuefler, W. Richards, <strong>C. Correa</strong>, R. Sharma, S. Kumra
+        &nbsp;·&nbsp;
+        <span class="venue">US Patent 12,236,340</span> &nbsp;·&nbsp; USPTO, 2025
+      </div>
+      <p class="pub-blurb">
+        Determining how deep a robot's suction cup must reach to reliably grasp an item is non-trivial: too shallow and the seal fails, too deep and you collide with neighboring objects. This patent covers a computer-vision pipeline that automatically estimates the correct grasp depth from camera images, enabling a robot system to handle a wide variety of item sizes and shapes without manual calibration per SKU.
+      </p>
+      <div class="pub-images">
+        <a href="#lb-patent" class="pub-img-link">
+          <img src="images/patent.png" alt="Patent figure: robot arm picking from a bin" class="pub-img pub-img-single" />
+        </a>
+      </div>
+      <div class="pub-badges">
+        <span class="badge badge-navy">10 citations</span>
+        <span class="badge badge-gray">Patent</span>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ============================================================
+     Skills
+     ============================================================ -->
+<section id="skills">
+  <div class="container">
+    <p class="section-title">Skills</p>
+    <div class="skills-grid">
+      <div>
+        <p class="skill-group-label">Languages</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">Julia</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Bash</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">Infra &amp; DevOps</p>
+        <div class="skill-tags">
+          <span class="skill-tag">AWS</span>
+          <span class="skill-tag">Docker</span>
+          <span class="skill-tag">Terraform</span>
+          <span class="skill-tag">Git</span>
+          <span class="skill-tag">Linux</span>
+        </div>
+      </div>
+      <div>
+        <p class="skill-group-label">Domains</p>
+        <div class="skill-tags">
+          <span class="skill-tag">Quantitative Finance</span>
+          <span class="skill-tag">Robotics</span>
+          <span class="skill-tag">Motion Planning</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">ML</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Contact
+     ============================================================ -->
+<section id="contact">
+  <div class="container">
+    <p class="section-title">Contact</p>
+    <p class="contact-tagline">Open to new opportunities and interesting conversations.</p>
+    <div class="contact-links">
+      <a href="mailto:christopher.correa14@gmail.com" class="btn btn-primary">christopher.correa14@gmail.com</a>
+      <a href="https://scholar.google.com/citations?user=kUbCuLgAAAAJ&hl=en" target="_blank" rel="noopener" class="btn btn-outline">Google Scholar</a>
+      <a href="https://github.com/chriscorrea14" target="_blank" rel="noopener" class="btn btn-outline">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Footer
+     ============================================================ -->
+<footer>
+  <p>© 2026 Christopher Correa &nbsp;·&nbsp; San Francisco Bay Area</p>
+</footer>
+
+<!-- Lightboxes -->
+<a id="lb-physical" class="lightbox" href="#" aria-label="Close image">
+  <span class="lightbox-close">&times;</span>
+  <img src="images/physical_both.png" alt="Simulation and physical bin-picking results" />
+</a>
+<a id="lb-yoda" class="lightbox" href="#" aria-label="Close image">
+  <span class="lightbox-close">&times;</span>
+  <img src="images/yoda.png" alt="Toppling simulation on a Yoda figurine" />
+</a>
+<a id="lb-toppling" class="lightbox" href="#" aria-label="Close image">
+  <span class="lightbox-close">&times;</span>
+  <img src="images/toppling_reliability.png" alt="Grasp quality before and after toppling" />
+</a>
+<a id="lb-patent" class="lightbox" href="#" aria-label="Close image">
+  <span class="lightbox-close">&times;</span>
+  <img src="images/patent.png" alt="Patent figure: robot arm picking from a bin" />
+</a>
+
+</body>
+</html>
