@@ -38,8 +38,7 @@
         <h1>Christopher Correa</h1>
         <p class="hero-subtitle">Quant Engineer &amp; Robotics Researcher</p>
         <p class="hero-bio">
-          I build systems where rigorous theory meets messy reality — from robot
-          manipulation pipelines in live warehouses to trading infrastructure handling
+          I love build real life systems, from robot manipulation pipelines in live warehouses to trading infrastructure handling
           real market microstructure. Based in the San Francisco Bay Area.
         </p>
         <div class="hero-actions">
@@ -61,18 +60,18 @@
     <p class="section-title">About</p>
     <p>
       I'm a quantitative engineer with a background in robotics research, currently
-      building trading systems and ML pipelines at Framework Ventures. My career has
-      moved through layers of the stack — from publishing grasp-planning research in
+      building trading systems and ML pipelines at Conduit. My career has
+      moved through layers of the stack, publishing grasp-planning research in
       the <a href="https://autolab.berkeley.edu/" target="_blank" rel="noopener">AUTOLab</a>
       at UC Berkeley, to leading an engineering team shipping robot pick-and-place
       systems at Osaro, to now designing the data infrastructure and signal research
-      that underpins live crypto trading strategies.
+      behind live crypto trading strategies.
     </p>
     <p>
       I hold a B.S. and M.S. in Electrical Engineering &amp; Computer Science from
-      UC Berkeley, where I was a Regents &amp; Chancellor Scholar and a Graduate
+      UC Berkeley, where I was a Regent's &amp; Chancellor's Scholar and a Graduate
       Student Instructor for robotic manipulation. I care deeply about building
-      reliable systems — ones that work predictably at the edge of what's tractable.
+      reliable systems in everything I do.
     </p>
   </div>
 </section>
@@ -102,7 +101,7 @@
         <span class="job-title">Auto-Bagging Team Lead</span>
         <span class="job-dates">Feb 2022 – June 2022</span>
       </div>
-      <div class="job-company">Osaro Inc.</div>
+      <div class="job-company"><a href="https://www.osaro.com/">Osaro Inc.</a></div>
       <ul>
         <li>Drove the technical roadmap for a 7-engineer team in partnership with the Product Manager. Delivered projects spanning item bounding-box detection, barcode scanning, oriented placement into a bagging machine, and operator/robot UIs.</li>
       </ul>
@@ -122,7 +121,7 @@
         <span class="job-title">Robotics Software Engineer</span>
         <span class="job-dates">May 2019 – June 2022</span>
       </div>
-      <div class="job-company">Osaro Inc.</div>
+      <div class="job-company"><a href="https://www.osaro.com/">Osaro Inc.</a></div>
       <ul>
         <li><strong>Robot Policy Architecture:</strong> Re-architected the robot motion and policy system to support arbitrary chaining and shared state across policies. Designed advanced suction-cup grasp policies that adapt to hardware configuration, increasing overall system cycle time by <strong>240%</strong>. Work resulted in <a href="https://patents.google.com/patent/US20210081791" target="_blank" rel="noopener">US Patent US20210081791</a>.</li>
         <li><strong>Core Logic:</strong> Designed the main bin-to-bin pick-and-place control loop, coordinating vision model queries, subtask scheduling, and hardware timing.</li>
@@ -139,8 +138,7 @@
       </div>
       <div class="job-company">University of California, Berkeley</div>
       <ul>
-        <li>GSI for EE/ME 206B: Robotic Manipulation and Interaction (analytical grasping, trajectory control, soft robotic grippers).</li>
-        <li>Head GSI for EE/ME 106B: Robotic Manipulation (undergraduate course).</li>
+        <li>GSI for EE 106/206B: Robotic Manipulation and Interaction (analytical grasping, trajectory control, soft robotic grippers).</li>
       </ul>
     </div>
 
@@ -311,6 +309,14 @@
 </section>
 
 <!-- ============================================================
+     Sandbox
+     ============================================================ -->
+<section id="sandbox">
+  <svg id="robot-arm-svg" class="robot-arm-svg" aria-hidden="true"></svg>
+  <p class="sandbox-hint">move the arm over the box and click to pick it up</p>
+</section>
+
+<!-- ============================================================
      Footer
      ============================================================ -->
 <footer>
@@ -335,5 +341,241 @@
   <img src="images/patent.png" alt="Patent figure: robot arm picking from a bin" />
 </a>
 
+<script>
+(function () {
+  const svg     = document.getElementById('robot-arm-svg');
+  const sandbox = document.getElementById('sandbox');
+  if (!svg || !sandbox) return;
+
+  const LINKS  = [90, 68, 50];
+  const BOX    = { w: 40, h: 34, d: 12 };
+  const GRAB_R = 38;
+  const DZ     = { w: 72, h: 62, cx: 230 }; // drop zone
+  const EMAIL  = 'christopher.correa14@gmail.com';
+  const C = {
+    base: '#0c1b3a', navy: '#1E4078', mid: '#2d5fa8',
+    blue: '#5b8ee6', orange: '#e8913a', hi: 'rgba(0,0,0,0.06)',
+    box1: '#c47f28', box2: '#e09a35', box3: '#9a5e18', tape: '#d4af56',
+  };
+
+  function el(tag, attrs) {
+    const e = document.createElementNS('http://www.w3.org/2000/svg', tag);
+    for (const [k, v] of Object.entries(attrs)) e.setAttribute(k, v);
+    return e;
+  }
+  function txt(content, attrs) {
+    const e = el('text', attrs);
+    e.textContent = content;
+    return e;
+  }
+
+  // Floor
+  const floorLine = el('line', { stroke: 'rgba(0,0,0,0.08)', 'stroke-width': 1 });
+
+  // Drop zone (hidden until box held)
+  const dzGroup = el('g', { opacity: '0' });
+  const dzRect  = el('rect', {
+    width: DZ.w, height: DZ.h, rx: 6,
+    fill: 'rgba(30,64,120,0.06)', stroke: '#1E4078',
+    'stroke-width': 1.5, 'stroke-dasharray': '5 4',
+  });
+  const dzOver  = el('rect', { width: DZ.w, height: DZ.h, rx: 6, fill: 'rgba(30,64,120,0.14)', opacity: '0' });
+  const dzTxt1  = txt('drop to', { 'text-anchor': 'middle', 'font-size': '8', fill: '#1E4078', 'font-family': 'Inter,sans-serif', 'font-weight': '600', 'letter-spacing': '0.05em' });
+  const dzTxt2  = txt('email me', { 'text-anchor': 'middle', 'font-size': '8', fill: '#1E4078', 'font-family': 'Inter,sans-serif', 'font-weight': '600', 'letter-spacing': '0.05em' });
+  dzGroup.appendChild(dzRect);
+  dzGroup.appendChild(dzOver);
+  dzGroup.appendChild(dzTxt1);
+  dzGroup.appendChild(dzTxt2);
+
+  // Box
+  const boxShadow = el('ellipse', { rx: 22, ry: 5, fill: 'rgba(0,0,0,0.15)' });
+  const boxSide   = el('polygon', { fill: C.box3 });
+  const boxTop    = el('polygon', { fill: C.box2 });
+  const boxFront  = el('rect',    { width: BOX.w, height: BOX.h, fill: C.box1, rx: 1 });
+  const tapeH     = el('line',    { stroke: C.tape, 'stroke-width': 2.5, opacity: '0.85' });
+  const tapeV     = el('line',    { stroke: C.tape, 'stroke-width': 2.5, opacity: '0.85' });
+  const grabRing  = el('circle',  { r: GRAB_R, fill: 'rgba(91,142,230,0.06)', stroke: 'rgba(91,142,230,0.55)', 'stroke-width': 1.5, 'stroke-dasharray': '5 4' });
+
+  // Arm
+  const basePlate = el('rect', { width: 50, height: 16, rx: 5, fill: C.base });
+  const baseHub   = el('rect', { width: 24, height: 11, rx: 4, fill: C.navy });
+  const SEG_W  = [16, 12, 9];
+  const segs   = SEG_W.map((w, i) => el('line', { 'stroke-width': w, stroke: i === 0 ? C.navy : C.mid, 'stroke-linecap': 'round' }));
+  const hilite = SEG_W.map(()     => el('line', { 'stroke-width': 3, stroke: C.hi, 'stroke-linecap': 'round' }));
+  const JRAD   = [11, 9, 7];
+  const jOuter = JRAD.map(r => el('circle', { r,    fill: C.base, stroke: '#07101f', 'stroke-width': 1.5 }));
+  const jInner = JRAD.map(r => el('circle', { r: r-4, fill: C.mid }));
+  const eeRim  = el('circle', { r: 10, fill: 'none', stroke: C.blue, 'stroke-width': 2.5 });
+  const eeFill = el('circle', { r: 6,  fill: C.blue, opacity: '0.4' });
+  const eeDot  = el('circle', { r: 2,  fill: 'white', opacity: '0.85' });
+
+  [floorLine, dzGroup,
+   boxShadow, boxSide, boxTop, boxFront, tapeH, tapeV, grabRing,
+   basePlate, baseHub, ...segs, ...hilite, ...jOuter, ...jInner,
+   eeRim, eeFill, eeDot,
+  ].forEach(e => svg.appendChild(e));
+
+  // ── State ───────────────────────────────────────────────────────
+  let mouse = null, smooth = null, idleT = 0, lastEE = { x: 0, y: 0 };
+  let boxHeld = false, boxPos = { x: 0, y: 0 }, ready = false;
+
+  sandbox.addEventListener('mousemove', e => {
+    const r = sandbox.getBoundingClientRect();
+    mouse = { x: e.clientX - r.left, y: e.clientY - r.top };
+  });
+  sandbox.addEventListener('mouseleave', () => { mouse = null; });
+
+  sandbox.addEventListener('click', () => {
+    const bc = { x: boxPos.x, y: boxPos.y - BOX.h / 2 };
+    const d  = Math.hypot(lastEE.x - bc.x, lastEE.y - bc.y);
+    if (!boxHeld && d < GRAB_R) {
+      boxHeld = true;
+      eeRim.setAttribute('stroke', C.orange);
+      eeFill.setAttribute('fill',  C.orange);
+    } else if (boxHeld) {
+      if (inDropZone()) {
+        window.location.href = 'mailto:' + EMAIL;
+      }
+      boxHeld = false;
+      boxPos.y = floorY();
+      eeRim.setAttribute('stroke', C.blue);
+      eeFill.setAttribute('fill',  C.blue);
+    }
+  });
+
+  // ── Helpers ─────────────────────────────────────────────────────
+  const floorY  = () => sandbox.offsetHeight - 38;
+  const getBase = () => ({ x: sandbox.offsetWidth - 80, y: floorY() });
+  const lerp    = (a, b, t) => a + (b - a) * t;
+  const lerpP   = (a, b, t) => ({ x: lerp(a.x, b.x, t), y: lerp(a.y, b.y, t) });
+
+  function inDropZone() {
+    const floor = floorY();
+    const dzX = DZ.cx - DZ.w / 2, dzY = floor - DZ.h;
+    return boxPos.x > dzX && boxPos.x < dzX + DZ.w && boxPos.y - BOX.h > dzY && boxPos.y < floor + 10;
+  }
+
+  function set2(e, a, b) {
+    e.setAttribute('x1', a.x); e.setAttribute('y1', a.y);
+    e.setAttribute('x2', b.x); e.setAttribute('y2', b.y);
+  }
+  function setC(e, p) { e.setAttribute('cx', p.x); e.setAttribute('cy', p.y); }
+  function setR(e, x, y) { e.setAttribute('x', x); e.setAttribute('y', y); }
+
+  function fabrik(tgt, base, lens) {
+    const n = lens.length;
+    const p = [{ ...base }];
+    for (let i = 0; i < n; i++)
+      p.push({ x: p[i].x - lens[i] * 0.6, y: p[i].y - lens[i] * 0.8 });
+    const reach = lens.reduce((a, b) => a + b, 0);
+    if (Math.hypot(tgt.x - base.x, tgt.y - base.y) >= reach) {
+      for (let i = 0; i < n; i++) {
+        const a = Math.atan2(tgt.y - p[i].y, tgt.x - p[i].x);
+        p[i+1] = { x: p[i].x + Math.cos(a) * lens[i], y: p[i].y + Math.sin(a) * lens[i] };
+      }
+      return p;
+    }
+    for (let k = 0; k < 20; k++) {
+      p[n] = { ...tgt };
+      for (let i = n-1; i >= 0; i--) {
+        const d = Math.hypot(p[i].x - p[i+1].x, p[i].y - p[i+1].y) || 1e-9;
+        p[i] = { x: p[i+1].x + (p[i].x - p[i+1].x) * lens[i] / d, y: p[i+1].y + (p[i].y - p[i+1].y) * lens[i] / d };
+      }
+      p[0] = { ...base };
+      for (let i = 0; i < n; i++) {
+        const d = Math.hypot(p[i+1].x - p[i].x, p[i+1].y - p[i].y) || 1e-9;
+        p[i+1] = { x: p[i].x + (p[i+1].x - p[i].x) * lens[i] / d, y: p[i].y + (p[i+1].y - p[i].y) * lens[i] / d };
+      }
+    }
+    return p;
+  }
+
+  function idleTarget(base) {
+    idleT += 0.009;
+    const raw = {
+      x: base.x - 110 + Math.cos(idleT)       * 80,
+      y: base.y - 145 + Math.sin(idleT * 1.35) * 55,
+    };
+    return clamp(raw);
+  }
+
+  function clamp(pt) {
+    return {
+      x: Math.max(15, Math.min(sandbox.offsetWidth  - 15, pt.x)),
+      y: Math.max(15, Math.min(sandbox.offsetHeight - 15, pt.y)),
+    };
+  }
+
+  function renderBox(pos, showGrab) {
+    const cx = pos.x, floor = pos.y;
+    const x = cx - BOX.w / 2, y = floor - BOX.h, d = BOX.d;
+    boxShadow.setAttribute('cx', cx); boxShadow.setAttribute('cy', floor + 2);
+    setR(boxFront, x, y);
+    boxTop.setAttribute('points',  `${x},${y} ${x+d},${y-d} ${x+d+BOX.w},${y-d} ${x+BOX.w},${y}`);
+    boxSide.setAttribute('points', `${x+BOX.w},${y} ${x+BOX.w+d},${y-d} ${x+BOX.w+d},${y-d+BOX.h} ${x+BOX.w},${y+BOX.h}`);
+    tapeH.setAttribute('x1', x);           tapeH.setAttribute('y1', y + BOX.h / 2);
+    tapeH.setAttribute('x2', x + BOX.w);   tapeH.setAttribute('y2', y + BOX.h / 2);
+    tapeV.setAttribute('x1', x + BOX.w/2); tapeV.setAttribute('y1', y);
+    tapeV.setAttribute('x2', x + BOX.w/2); tapeV.setAttribute('y2', y + BOX.h);
+    setC(grabRing, { x: cx, y: floor - BOX.h / 2 });
+    grabRing.style.display = showGrab ? '' : 'none';
+  }
+
+  function renderDropZone(floor, over) {
+    const x = DZ.cx - DZ.w / 2, y = floor - DZ.h;
+    setR(dzRect, x, y);
+    setR(dzOver, x, y);
+    dzTxt1.setAttribute('x', DZ.cx); dzTxt1.setAttribute('y', y + DZ.h / 2 - 5);
+    dzTxt2.setAttribute('x', DZ.cx); dzTxt2.setAttribute('y', y + DZ.h / 2 + 7);
+    dzOver.setAttribute('opacity', over ? '1' : '0');
+  }
+
+  // ── Render loop ─────────────────────────────────────────────────
+  function loop() {
+    const floor = floorY();
+    const base  = getBase();
+
+    if (!ready) {
+      boxPos = { x: Math.max(base.x - 220, 140), y: floor };
+      smooth = { x: base.x - 110, y: base.y - 140 };
+      ready  = true;
+    }
+
+    const raw = mouse || idleTarget(base);
+    const tgt = mouse ? clamp(raw) : raw;
+    smooth = lerpP(smooth, tgt, 0.1);
+
+    const p = fabrik(smooth, base, LINKS);
+    lastEE = p[p.length - 1];
+
+    if (boxHeld) {
+      boxPos = { x: lastEE.x, y: lastEE.y + BOX.h };
+    } else {
+      boxPos.y = floor;
+    }
+
+    set2(floorLine, { x: 0, y: floor }, { x: sandbox.offsetWidth, y: floor });
+
+    // Drop zone: fade in when holding, highlight when box is over it
+    dzGroup.setAttribute('opacity', boxHeld ? '1' : '0');
+    if (boxHeld) renderDropZone(floor, inDropZone());
+
+    const bc = { x: boxPos.x, y: boxPos.y - BOX.h / 2 };
+    renderBox(boxPos, !boxHeld && Math.hypot(lastEE.x - bc.x, lastEE.y - bc.y) < GRAB_R);
+
+    setR(basePlate, p[0].x - 25, p[0].y);
+    setR(baseHub,   p[0].x - 12, p[0].y - 11);
+    segs.forEach((s, i)   => set2(s, p[i], p[i+1]));
+    hilite.forEach((h, i) => set2(h, p[i], p[i+1]));
+    jOuter.forEach((j, i) => setC(j, p[i]));
+    jInner.forEach((j, i) => setC(j, p[i]));
+    [eeRim, eeFill, eeDot].forEach(e => setC(e, lastEE));
+
+    requestAnimationFrame(loop);
+  }
+
+  requestAnimationFrame(loop);
+})();
+</script>
 </body>
 </html>
