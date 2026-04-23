@@ -17,7 +17,10 @@
       "Bash(/tmp/imgenv/bin/pip install *)",
       "Bash(/tmp/imgenv/bin/python3 -c ' *)",
       "Bash(brew install *)",
-      "Bash(gs -dNOPAUSE -dBATCH -dEPSCrop -sDEVICE=png16m -r150 -sOutputFile=/Users/chris/personal_website/images/physical_both.png /Users/chris/personal_website/images/physical_both.eps)"
+      "Bash(gs -dNOPAUSE -dBATCH -dEPSCrop -sDEVICE=png16m -r150 -sOutputFile=/Users/chris/personal_website/images/physical_both.png /Users/chris/personal_website/images/physical_both.eps)",
+      "Bash(gh repo *)",
+      "Bash(python3 -c \"import sys,json; d=json.load\\(sys.stdin\\); print\\(d.get\\('description',''\\)\\); print\\('---'\\); print\\(d.get\\('readme',''\\)[:2000]\\)\")",
+      "WebFetch(domain:github.com)"
     ]
   }
 }

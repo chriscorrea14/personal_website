@@ -465,6 +465,71 @@ nav {
 }
 
 /* ============================================================
+   Projects
+   ============================================================ */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 20px;
+}
+
+.project-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  background: var(--white);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  transition: box-shadow 0.15s, border-color 0.15s;
+  position: relative;
+  cursor: pointer;
+}
+
+.project-card:hover {
+  box-shadow: var(--shadow-md);
+  border-color: var(--navy);
+}
+
+.project-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.project-name {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--text);
+}
+
+.project-name::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.project-name:hover { color: var(--navy); text-decoration: none; }
+
+.project-gh {
+  color: var(--text-muted);
+  flex-shrink: 0;
+  display: flex;
+  position: relative;
+  z-index: 1;
+}
+
+.project-gh:hover { color: var(--navy); }
+
+.project-desc {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.65;
+  flex: 1;
+}
+
+/* ============================================================
    Contact
    ============================================================ */
 #contact { text-align: center; }
